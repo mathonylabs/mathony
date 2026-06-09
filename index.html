@@ -1,1373 +1,396 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mathony — Tecnologia que Impulsiona Negócios</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --c1: #0A0A0F;
-    --c2: #111118;
-    --c3: #1A1A26;
-    --accent: #00E5A0;
-    --accent2: #7B5CF6;
-    --accent3: #FF6B35;
-    --text: #F0EEF8;
-    --muted: #8B8999;
-    --border: rgba(255,255,255,0.07);
-    --card-bg: rgba(255,255,255,0.03);
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--c1);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* Noise overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 1.2rem 6vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border);
-    backdrop-filter: blur(24px);
-    background: rgba(10,10,15,0.7);
-  }
-
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.25rem;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .logo span { color: var(--accent); }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2.5rem;
-  }
-
-  nav ul a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 400;
-    transition: color 0.2s;
-    letter-spacing: 0.02em;
-  }
-
-  nav ul a:hover { color: var(--text); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: var(--c1) !important;
-    font-weight: 600 !important;
-    padding: 0.5rem 1.25rem;
-    border-radius: 6px;
-    transition: opacity 0.2s !important;
-  }
-
-  .nav-cta:hover { opacity: 0.85; color: var(--c1) !important; }
-
-  /* ── HERO ── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 10rem 6vw 6rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(100px);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .hero-orb-1 {
-    width: 600px; height: 600px;
-    background: rgba(0, 229, 160, 0.12);
-    top: -100px; right: -100px;
-  }
-
-  .hero-orb-2 {
-    width: 400px; height: 400px;
-    background: rgba(123, 92, 246, 0.1);
-    bottom: 0; left: 20%;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 820px;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0,229,160,0.1);
-    border: 1px solid rgba(0,229,160,0.25);
-    border-radius: 100px;
-    padding: 0.4rem 1rem;
-    font-size: 0.8rem;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 2rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.5); }
-  }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-  }
-
-  h1 em {
-    font-style: normal;
-    color: var(--accent);
-  }
-
-  .hero-sub {
-    font-size: 1.15rem;
-    color: var(--muted);
-    max-width: 560px;
-    line-height: 1.75;
-    margin-bottom: 3rem;
-    font-weight: 300;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--accent);
-    color: var(--c1);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0,229,160,0.3);
-  }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: transparent;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 0.85rem 2rem;
-    border-radius: 8px;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .btn-secondary:hover {
-    border-color: rgba(255,255,255,0.2);
-    background: rgba(255,255,255,0.04);
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-    margin-top: 4.5rem;
-    padding-top: 3rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.03em;
-  }
-
-  .stat-num span { color: var(--accent); }
-  .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 2px; }
-
-  /* ── MARQUEE ── */
-  .marquee-wrap {
-    overflow: hidden;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    padding: 1.2rem 0;
-    background: rgba(255,255,255,0.015);
-  }
-
-  .marquee-track {
-    display: flex;
-    gap: 4rem;
-    width: max-content;
-    animation: marquee 22s linear infinite;
-  }
-
-  .marquee-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    white-space: nowrap;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .marquee-dot { color: var(--accent); font-size: 1.2rem; line-height: 1; }
-
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* ── SECTIONS ── */
-  section { padding: 8rem 6vw; position: relative; }
-
-  .section-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.75rem;
-    color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
-  }
-
-  .section-label::before {
-    content: '';
-    width: 24px; height: 1px;
-    background: var(--accent);
-  }
-
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  h2 em { font-style: normal; color: var(--accent); }
-
-  .section-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    font-weight: 300;
-    max-width: 500px;
-    line-height: 1.75;
-  }
-
-  /* ── SERVICES ── */
-  #servicos { background: var(--c2); }
-
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5px;
-    margin-top: 4rem;
-    border: 1.5px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .service-card {
-    background: var(--c2);
-    padding: 2.5rem;
-    border-right: 1.5px solid var(--border);
-    border-bottom: 1.5px solid var(--border);
-    transition: background 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .service-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  .service-card:hover::before { transform: scaleX(1); }
-  .service-card:hover { background: var(--c3); }
-
-  .service-icon {
-    width: 48px; height: 48px;
-    background: rgba(0,229,160,0.08);
-    border: 1px solid rgba(0,229,160,0.15);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.4rem;
-  }
-
-  .service-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.02em;
-  }
-
-  .service-desc {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-
-  .service-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 1.5rem;
-  }
-
-  .tag {
-    font-size: 0.72rem;
-    color: var(--accent);
-    background: rgba(0,229,160,0.08);
-    border: 1px solid rgba(0,229,160,0.15);
-    padding: 4px 10px;
-    border-radius: 100px;
-    letter-spacing: 0.02em;
-  }
-
-  /* ── PORTFOLIO ── */
-  #portfolio { background: var(--c1); }
-
-  .portfolio-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 4rem;
-    flex-wrap: wrap;
-    gap: 2rem;
-  }
-
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-
-  .portfolio-grid .project-card:first-child {
-    grid-row: span 2;
-  }
-
-  .project-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: transform 0.3s, border-color 0.3s;
-    text-decoration: none;
-    color: inherit;
-    display: block;
-  }
-
-  .project-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255,255,255,0.15);
-  }
-
-  .project-thumb {
-    width: 100%;
-    aspect-ratio: 16/9;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .project-card:first-child .project-thumb {
-    aspect-ratio: 4/5;
-  }
-
-  .project-visual {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    position: relative;
-  }
-
-  .pv-1 { background: linear-gradient(135deg, #0F2027, #203A43, #2C5364); }
-  .pv-2 { background: linear-gradient(135deg, #1A0533, #2D1065, #4C1D95); }
-  .pv-3 { background: linear-gradient(135deg, #0D3B0D, #1B5E1B, #14532D); }
-  .pv-4 { background: linear-gradient(135deg, #2D1B00, #6B3A0F, #92400E); }
-
-  .project-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0);
-    transition: background 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .project-card:hover .project-overlay {
-    background: rgba(0,229,160,0.08);
-  }
-
-  .project-body { padding: 1.5rem; }
-
-  .project-cat {
-    font-size: 0.72rem;
-    color: var(--accent);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  .project-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-  }
-
-  .project-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-weight: 300;
-    line-height: 1.65;
-  }
-
-  .project-result {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 1rem;
-    font-size: 0.82rem;
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  /* ── PROCESS ── */
-  #processo { background: var(--c2); }
-
-  .process-steps {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    margin-top: 4rem;
-    position: relative;
-  }
-
-  .process-steps::before {
-    content: '';
-    position: absolute;
-    top: 28px;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border), var(--border), transparent);
-    z-index: 0;
-  }
-
-  .step {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-  }
-
-  .step-num {
-    width: 56px; height: 56px;
-    background: var(--c1);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.85rem;
-    color: var(--accent);
-    margin: 0 auto 1.5rem;
-    transition: background 0.3s, border-color 0.3s;
-  }
-
-  .step:hover .step-num {
-    background: rgba(0,229,160,0.1);
-    border-color: rgba(0,229,160,0.3);
-  }
-
-  .step-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.01em;
-  }
-
-  .step-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    font-weight: 300;
-    line-height: 1.65;
-  }
-
-  /* ── TEAM ── */
-  #time { background: var(--c1); }
-
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 4rem;
-  }
-
-  .team-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2.5rem;
-    text-align: center;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .team-card:hover {
-    border-color: rgba(255,255,255,0.12);
-    transform: translateY(-4px);
-  }
-
-  .avatar {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    margin: 0 auto 1.5rem;
-    border: 2px solid var(--border);
-  }
-
-  .av-0 { background: rgba(181, 221, 0, 0.12); color: var(--accent); border-color: rgba(220, 253, 74, 0.25); }
-  .av-1 { background: rgba(0,229,160,0.12); color: var(--accent); border-color: rgba(0,229,160,0.25); }
-  .av-2 { background: rgba(123,92,246,0.12); color: var(--accent2); border-color: rgba(123,92,246,0.25); }
-  .av-3 { background: rgba(255,107,53,0.12); color: var(--accent3); border-color: rgba(255,107,53,0.25); }
-
-  .member-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.02em;
-    margin-bottom: 0.25rem;
-  }
-
-  .member-role {
-    font-size: 0.85rem;
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 1rem;
-  }
-
-  .member-bio {
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-weight: 300;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-
-  .member-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
-  }
-
-  .skill-tag {
-    font-size: 0.72rem;
-    color: var(--muted);
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    padding: 4px 10px;
-    border-radius: 100px;
-  }
-
-  /* ── TESTIMONIALS ── */
-  #depoimentos { background: var(--c2); }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 4rem;
-  }
-
-  .testimonial-card {
-    background: var(--c3);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
-    transition: border-color 0.3s;
-  }
-
-  .testimonial-card:hover { border-color: rgba(255,255,255,0.12); }
-
-  .stars {
-    display: flex;
-    gap: 3px;
-    margin-bottom: 1rem;
-    color: var(--accent);
-    font-size: 0.9rem;
-  }
-
-  .testimonial-text {
-    font-size: 0.95rem;
-    color: var(--text);
-    font-weight: 300;
-    line-height: 1.8;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    opacity: 0.9;
-  }
-
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .author-avatar {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 0.8rem;
-    color: var(--text);
-    flex-shrink: 0;
-  }
-
-  .author-name {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text);
-  }
-
-  .author-company {
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  /* ── CTA ── */
-  #contato { background: var(--c1); text-align: center; padding: 8rem 6vw 10rem; }
-
-  .cta-box {
-    max-width: 760px;
-    margin: 0 auto;
-    background: var(--c2);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 5rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-box::before {
-    content: '';
-    position: absolute;
-    top: -1px; left: 50%;
-    transform: translateX(-50%);
-    width: 200px; height: 1px;
-    background: linear-gradient(to right, transparent, var(--accent), transparent);
-  }
-
-  .cta-orb {
-    position: absolute;
-    width: 400px; height: 300px;
-    background: rgba(0,229,160,0.05);
-    border-radius: 50%;
-    filter: blur(80px);
-    top: -50px; left: 50%;
-    transform: translateX(-50%);
-    pointer-events: none;
-  }
-
-  .cta-box h2 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
-    margin-bottom: 1rem;
-  }
-
-  .cta-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    font-weight: 300;
-    max-width: 480px;
-    margin: 0 auto 3rem;
-    line-height: 1.75;
-  }
-
-  .cta-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .contact-options {
-    display: flex;
-    gap: 2.5rem;
-    justify-content: center;
-    margin-top: 3rem;
-    flex-wrap: wrap;
-  }
-
-  .contact-opt {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.88rem;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .contact-opt:hover { color: var(--text); }
-  .contact-opt-icon { font-size: 1.1rem; }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--c2);
-    border-top: 1px solid var(--border);
-    padding: 2.5rem 6vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  footer .logo { font-size: 1.1rem; }
-
-  .footer-copy {
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-size: 0.82rem;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--text); }
-
-  /* ── SCROLL ANIMATIONS ── */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .stagger > * {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .stagger > *.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .portfolio-grid { grid-template-columns: 1fr; }
-    .portfolio-grid .project-card:first-child { grid-row: auto; }
-    .team-grid { grid-template-columns: 1fr; }
-    .process-steps { grid-template-columns: 1fr 1fr; }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    nav ul { display: none; }
-    .hero-stats { gap: 2rem; flex-wrap: wrap; }
-    .cta-box { padding: 3rem 2rem; }
-  }
-
-  @media (max-width: 600px) {
-    h1 { font-size: 2.4rem; }
-    section { padding: 5rem 5vw; }
-    .process-steps { grid-template-columns: 1fr; }
-    .process-steps::before { display: none; }
-    .portfolio-grid { grid-template-columns: 1fr; }
-  }
-
-  /* Number counter animation */
-  .counter { transition: all 0.3s; }
-
-  /* Underline animated */
-  .underline-anim {
-    position: relative;
-    display: inline;
-  }
-
-  .underline-anim::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0; right: 0;
-    height: 3px;
-    background: var(--accent);
-    border-radius: 2px;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.6s ease 0.5s;
-  }
-
-  .underline-anim.visible::after { transform: scaleX(1); }
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav>
-  <a href="#" class="logo">mathony</a>
-  <ul>
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#portfolio">Portfólio</a></li>
-    <li><a href="#time">Time</a></li>
-    <li><a href="#depoimentos">Clientes</a></li>
-    <li><a href="#contato" class="nav-cta">Falar com a gente →</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-content">
-    <div class="hero-badge">Disponíveis para novos projetos</div>
-    <h1>
-      Tecnologia que<br>
-      <em>impulsiona</em><br>
-      seu negócio.
-    </h1>
-    <p class="hero-sub">
-      Três especialistas, uma missão: transformar suas ideias em produtos digitais de alto impacto. Desenvolvemos sistemas, apps e plataformas que geram resultados reais.
-    </p>
-    <div class="hero-actions">
-      <a href="#contato" class="btn-primary">
-        Iniciar projeto
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="#portfolio" class="btn-secondary">Ver portfólio</a>
-    </div>
-    <div class="hero-stats stagger">
-      <div>
-        <div class="stat-num"><span>42</span>+</div>
-        <div class="stat-label">Projetos entregues</div>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Mathony</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/global.css">
+  </head>
+
+  <body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">mathony</a>
+    <ul>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
+      <!-- <li><a href="#time">Time</a></li> -->
+      <!-- <li><a href="#depoimentos">Clientes</a></li> -->
+      <li><a href="#contato" class="nav-cta">Falar com a gente →</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Disponíveis para novos projetos</div>
+      <h1>
+        Tecnologia que<br>
+        <em>impulsiona</em><br>
+        seu negócio.
+      </h1>
+      <p class="hero-sub">
+        Desenvolvemos soluções digitais modernas para empresas que desejam crescer através da tecnologia.
+      </p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn-primary">
+          Iniciar projeto
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#portfolio" class="btn-secondary">Ver portfólio</a>
       </div>
-      <div>
-        <div class="stat-num"><span>98</span>%</div>
-        <div class="stat-label">Satisfação dos clientes</div>
-      </div>
-      <div>
-        <div class="stat-num"><span>5</span>+</div>
-        <div class="stat-label">Anos de mercado</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="marquee-dot">●</span> React & Next.js</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> Node.js & APIs</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> React Native</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> Cloud & DevOps</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> UI/UX Design</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> Inteligência Artificial</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> PostgreSQL & MongoDB</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> AWS & GCP</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> React & Next.js</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> Node.js & APIs</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> React Native</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> Cloud & DevOps</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> UI/UX Design</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> Inteligência Artificial</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> PostgreSQL & MongoDB</span>
-    <span class="marquee-item"><span class="marquee-dot">●</span> AWS & GCP</span>
-  </div>
-</div>
-
-<!-- SERVICES -->
-<section id="servicos">
-  <div class="fade-up">
-    <div class="section-label">O que fazemos</div>
-    <h2>Soluções digitais<br>que <em>geram valor</em></h2>
-    <p class="section-sub">Do MVP ao produto escalável — entregamos com qualidade, no prazo e com foco total em performance de negócio.</p>
-  </div>
-  <div class="services-grid stagger" style="margin-top:4rem">
-    <div class="service-card">
-      <div class="service-icon">⚡</div>
-      <div class="service-title">Desenvolvimento Web</div>
-      <p class="service-desc">Aplicações web rápidas, escaláveis e com excelente experiência de usuário. Do front ao backend — tudo integrado.</p>
-      <div class="service-tags">
-        <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">TypeScript</span>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">📱</div>
-      <div class="service-title">Apps Mobile</div>
-      <p class="service-desc">Aplicativos iOS e Android com performance nativa. Uma codebase, dois sistemas, experiência impecável.</p>
-      <div class="service-tags">
-        <span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">iOS</span><span class="tag">Android</span>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🔌</div>
-      <div class="service-title">APIs & Integrações</div>
-      <p class="service-desc">Arquitetura robusta de APIs REST e GraphQL. Conectamos seus sistemas e automatizamos processos complexos.</p>
-      <div class="service-tags">
-        <span class="tag">REST</span><span class="tag">GraphQL</span><span class="tag">Webhooks</span><span class="tag">Automação</span>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">☁️</div>
-      <div class="service-title">Cloud & Infraestrutura</div>
-      <p class="service-desc">Deploy, monitoramento e escalabilidade na nuvem. Seu produto no ar 24/7 com resiliência e custo otimizado.</p>
-      <div class="service-tags">
-        <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Docker</span><span class="tag">CI/CD</span>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🧠</div>
-      <div class="service-title">IA & Automação</div>
-      <p class="service-desc">Integramos IA para automatizar tarefas, gerar insights e criar experiências personalizadas para seus usuários.</p>
-      <div class="service-tags">
-        <span class="tag">LLMs</span><span class="tag">ML</span><span class="tag">OpenAI</span><span class="tag">Pipelines</span>
-      </div>
-    </div>
-    <div class="service-card">
-      <div class="service-icon">🎨</div>
-      <div class="service-title">UX/UI Design</div>
-      <p class="service-desc">Interfaces bonitas, intuitivas e focadas em conversão. Design que vende e usuários que ficam.</p>
-      <div class="service-tags">
-        <span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">Design System</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <div class="portfolio-header fade-up">
-    <div>
-      <div class="section-label">Casos de sucesso</div>
-      <h2>Projetos que<br><em>falam por si</em></h2>
-    </div>
-    <p class="section-sub" style="margin:0">Resultados reais para empresas reais. Cada projeto, uma história de transformação digital.</p>
-  </div>
-  <div class="portfolio-grid stagger">
-    <a href="#contato" class="project-card">
-      <div class="project-thumb">
-        <div class="project-visual pv-1">
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-            <rect x="10" y="20" width="60" height="40" rx="4" stroke="rgba(0,229,160,0.5)" stroke-width="1.5" fill="rgba(0,229,160,0.05)"/>
-            <rect x="20" y="30" width="20" height="4" rx="2" fill="rgba(0,229,160,0.4)"/>
-            <rect x="20" y="38" width="35" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
-            <rect x="20" y="46" width="28" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
-            <circle cx="57" cy="34" r="8" fill="rgba(0,229,160,0.2)" stroke="rgba(0,229,160,0.5)" stroke-width="1.5"/>
-            <path d="M53 34l3 3 6-6" stroke="rgba(0,229,160,0.8)" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="project-overlay"></div>
-      </div>
-      <div class="project-body">
-        <div class="project-cat">Plataforma SaaS</div>
-        <div class="project-name">Sistema de Gestão Financeira</div>
-        <p class="project-desc">Dashboard completo com análises em tempo real, conciliação bancária automática e relatórios personalizados para PMEs.</p>
-        <div class="project-result">↑ 340% produtividade financeira</div>
-      </div>
-    </a>
-    <a href="#contato" class="project-card">
-      <div class="project-thumb">
-        <div class="project-visual pv-2">
-          <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-            <rect x="15" y="8" width="40" height="54" rx="6" stroke="rgba(123,92,246,0.5)" stroke-width="1.5" fill="rgba(123,92,246,0.07)"/>
-            <rect x="25" y="18" width="20" height="2" rx="1" fill="rgba(123,92,246,0.5)"/>
-            <rect x="20" y="25" width="30" height="12" rx="3" fill="rgba(123,92,246,0.15)" stroke="rgba(123,92,246,0.3)" stroke-width="1"/>
-            <rect x="20" y="42" width="13" height="10" rx="2" fill="rgba(123,92,246,0.2)"/>
-            <rect x="37" y="42" width="13" height="10" rx="2" fill="rgba(123,92,246,0.15)"/>
-          </svg>
-        </div>
-        <div class="project-overlay"></div>
-      </div>
-      <div class="project-body">
-        <div class="project-cat">App Mobile</div>
-        <div class="project-name">App de Delivery Premium</div>
-        <p class="project-desc">Plataforma de entrega com rastreamento em tempo real, pagamento integrado e painel de gestão para restaurantes.</p>
-        <div class="project-result">↑ 2.1M pedidos processados</div>
-      </div>
-    </a>
-    <a href="#contato" class="project-card">
-      <div class="project-thumb">
-        <div class="project-visual pv-3">
-          <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-            <circle cx="35" cy="35" r="22" stroke="rgba(20,200,100,0.4)" stroke-width="1.5" fill="rgba(20,200,100,0.05)"/>
-            <circle cx="35" cy="35" r="14" stroke="rgba(20,200,100,0.3)" stroke-width="1" fill="rgba(20,200,100,0.05)"/>
-            <line x1="35" y1="13" x2="35" y2="57" stroke="rgba(20,200,100,0.3)" stroke-width="1"/>
-            <line x1="13" y1="35" x2="57" y2="35" stroke="rgba(20,200,100,0.3)" stroke-width="1"/>
-            <path d="M20 25 Q35 15 50 25 Q35 35 20 25Z" fill="rgba(20,200,100,0.15)"/>
-          </svg>
-        </div>
-        <div class="project-overlay"></div>
-      </div>
-      <div class="project-body">
-        <div class="project-cat">E-commerce</div>
-        <div class="project-name">Marketplace B2B Agro</div>
-        <p class="project-desc">Plataforma de venda direta para o agronegócio com controle de estoque, logística e integração com ERPs.</p>
-        <div class="project-result">R$ 12M+ em transações</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section id="processo">
-  <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto">
-    <div class="section-label">Como trabalhamos</div>
-    <h2>Um processo <em>transparente</em><br>do início ao fim</h2>
-    <p class="section-sub" style="max-width:none">Nada de caixas pretas. Você acompanha cada etapa e tem visibilidade total do projeto.</p>
-  </div>
-  <div class="process-steps stagger">
-    <div class="step">
-      <div class="step-num">01</div>
-      <div class="step-title">Descoberta</div>
-      <p class="step-desc">Entendemos seu negócio, objetivos e público. Mapeamos oportunidades e definimos escopo.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <div class="step-title">Estratégia</div>
-      <p class="step-desc">Arquitetura técnica, stack tecnológico e roadmap de entrega com milestones claros.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <div class="step-title">Construção</div>
-      <p class="step-desc">Ciclos de 2 semanas com entregas incrementais. Você vê o produto crescendo em tempo real.</p>
-    </div>
-    <div class="step">
-      <div class="step-num">04</div>
-      <div class="step-title">Lançamento</div>
-      <p class="step-desc">Deploy seguro, monitoramento, treinamento e suporte pós-lançamento incluídos.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TEAM -->
-<section id="time">
-  <div class="fade-up">
-    <div class="section-label">O time</div>
-    <h2>Três especialistas,<br><em>um objetivo</em></h2>
-    <p class="section-sub">Sem juniores, sem terceirizados. Você fala diretamente com quem vai desenvolver seu produto.</p>
-  </div>
-  <div class="team-grid stagger">
-    <div class="team-card">
-      <div class="avatar av-0">MA</div>
-      <div class="member-name">Matheus Araújo</div>
-      <div class="member-role">Tech Lead & Full-Stack</div>
-      <p class="member-bio">8 anos desenvolvendo produtos digitais. Especialista em arquitetura escalável e performance. Já liderou times em startups Series B.</p>
-      <div class="member-skills">
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">Node.js</span>
-        <span class="skill-tag">AWS</span>
-        <span class="skill-tag">TypeScript</span>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="avatar av-1">MN</div>
-      <div class="member-name">Matheus Nascimento</div>
-      <div class="member-role">Tech Lead & Full-Stack</div>
-      <p class="member-bio">8 anos desenvolvendo produtos digitais. Especialista em arquitetura escalável e performance. Já liderou times em startups Series B.</p>
-      <div class="member-skills">
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">Node.js</span>
-        <span class="skill-tag">AWS</span>
-        <span class="skill-tag">TypeScript</span>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="avatar av-2">TP</div>
-      <div class="member-name">Thiago Pereira</div>
-      <div class="member-role">UX Designer & Frontend</div>
-      <p class="member-bio">Combina beleza e funcionalidade com maestria. Criou interfaces para mais de 30 produtos com taxas de conversão acima da média do mercado.</p>
-      <div class="member-skills">
-        <span class="skill-tag">Figma</span>
-        <span class="skill-tag">Next.js</span>
-        <span class="skill-tag">CSS avançado</span>
-        <span class="skill-tag">A/B Tests</span>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="avatar av-3">AV</div>
-      <div class="member-name">Anthony Victor</div>
-      <div class="member-role">Backend & Infraestrutura</div>
-      <p class="member-bio">Mestre em sistemas distribuídos e APIs de alta performance. Garantiu 99.9% de uptime em sistemas com milhões de usuários.</p>
-      <div class="member-skills">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Kubernetes</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="depoimentos">
-  <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto">
-    <div class="section-label">O que dizem de nós</div>
-    <h2>Clientes que<br><em>recomendam</em></h2>
-  </div>
-  <div class="testimonials-grid stagger">
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Entregaram o MVP em 6 semanas, algo que nossa equipe interna tentava há meses. Código limpo, documentado e escalável. Hoje somos clientes fiéis."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">LF</div>
+      <!-- <div class="hero-stats stagger">
         <div>
-          <div class="author-name">Lucas Ferreira</div>
-          <div class="author-company">CEO, Fintech MaisPago</div>
+          <div class="stat-num"><span>42</span>+</div>
+          <div class="stat-label">Projetos entregues</div>
         </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Thiago redesenhou nosso app e aumentamos o engajamento em 70% no primeiro mês. Ele entende o usuário de uma forma que poucos designers conseguem."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">AB</div>
         <div>
-          <div class="author-name">Ana Beatriz Lima</div>
-          <div class="author-company">CPO, Plataforma EdTech Aprendia</div>
+          <div class="stat-num"><span>98</span>%</div>
+          <div class="stat-label">Satisfação dos clientes</div>
         </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Migramos nossa infra para AWS com zero downtime. Matheus foi cirúrgico na execução. Reduzimos custo de infra em 45% e ganhamos muito mais estabilidade."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">PC</div>
         <div>
-          <div class="author-name">Pedro Costa</div>
-          <div class="author-company">CTO, Logística TruckGo</div>
+          <div class="stat-num"><span>5</span>+</div>
+          <div class="stat-label">Anos de mercado</div>
         </div>
-      </div>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-dot">●</span> React & Next.js</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> Node.js & APIs</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> React Native</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> Cloud & DevOps</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> UI/UX Design</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> Inteligência Artificial</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> PostgreSQL & MongoDB</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> AWS & GCP</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> React & Next.js</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> Node.js & APIs</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> React Native</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> Cloud & DevOps</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> UI/UX Design</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> Inteligência Artificial</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> PostgreSQL & MongoDB</span>
+      <span class="marquee-item"><span class="marquee-dot">●</span> AWS & GCP</span>
     </div>
   </div>
-</section>
 
-<!-- CTA -->
-<section id="contato">
-  <div class="cta-box fade-up">
-    <div class="cta-orb"></div>
-    <div class="section-label" style="justify-content:center">Vamos conversar</div>
-    <h2>Pronto para <em>decolar</em>?</h2>
-    <p class="cta-sub">Conte sobre seu projeto e vamos mostrar como podemos transformar sua ideia em realidade. Resposta em até 24 horas.</p>
-    <div class="cta-actions">
-      <a href="mailto:mathony@gmail.com" class="btn-primary" style="font-size:1rem; padding:1rem 2.5rem">
-        Enviar proposta
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="https://wa.me/5571999999999" class="btn-secondary" style="font-size:1rem; padding:1rem 2.5rem">💬 WhatsApp</a>
+  <!-- SERVICES -->
+  <section id="servicos">
+    <div class="fade-up">
+      <div class="section-label">O que fazemos</div>
+      <h2>Soluções digitais<br>que <em>geram valor</em></h2>
+      <p class="section-sub">Do MVP ao produto escalável — entregamos com qualidade, no prazo e com foco total em performance de negócio.</p>
     </div>
-    <div class="contact-options">
-      <a href="mailto:mathony@gmail.com" class="contact-opt">
-        <span class="contact-opt-icon">✉️</span> mathony@gmail.com
+    <div class="services-grid stagger" style="margin-top:4rem">
+      <div class="service-card">
+        <div class="service-icon">⚡</div>
+        <div class="service-title">Desenvolvimento Web</div>
+        <p class="service-desc">Aplicações web rápidas, escaláveis e com excelente experiência de usuário. Do front ao backend — tudo integrado.</p>
+        <div class="service-tags">
+          <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">TypeScript</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <div class="service-title">Apps Mobile</div>
+        <p class="service-desc">Aplicativos iOS e Android com performance nativa. Uma codebase, dois sistemas, experiência impecável.</p>
+        <div class="service-tags">
+          <span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">iOS</span><span class="tag">Android</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔌</div>
+        <div class="service-title">APIs & Integrações</div>
+        <p class="service-desc">Arquitetura robusta de APIs REST e GraphQL. Conectamos seus sistemas e automatizamos processos complexos.</p>
+        <div class="service-tags">
+          <span class="tag">REST</span><span class="tag">GraphQL</span><span class="tag">Webhooks</span><span class="tag">Automação</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">☁️</div>
+        <div class="service-title">Cloud & Infraestrutura</div>
+        <p class="service-desc">Deploy, monitoramento e escalabilidade na nuvem. Seu produto no ar 24/7 com resiliência e custo otimizado.</p>
+        <div class="service-tags">
+          <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Docker</span><span class="tag">CI/CD</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧠</div>
+        <div class="service-title">IA & Automação</div>
+        <p class="service-desc">Integramos IA para automatizar tarefas, gerar insights e criar experiências personalizadas para seus usuários.</p>
+        <div class="service-tags">
+          <span class="tag">LLMs</span><span class="tag">ML</span><span class="tag">OpenAI</span><span class="tag">Pipelines</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎨</div>
+        <div class="service-title">UX/UI Design</div>
+        <p class="service-desc">Interfaces bonitas, intuitivas e focadas em conversão. Design que vende e usuários que ficam.</p>
+        <div class="service-tags">
+          <span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">Design System</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="portfolio-header fade-up">
+      <div>
+        <div class="section-label">Casos de sucesso</div>
+        <h2>Projetos que<br><em>falam por si</em></h2>
+      </div>
+      <p class="section-sub" style="margin:0">Resultados reais para empresas reais. Cada projeto, uma história de transformação digital.</p>
+    </div>
+    <div class="portfolio-grid stagger">
+      <a href="#contato" class="project-card">
+        <div class="project-thumb">
+          <div class="project-visual pv-1">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+              <rect x="10" y="20" width="60" height="40" rx="4" stroke="rgba(0,229,160,0.5)" stroke-width="1.5" fill="rgba(0,229,160,0.05)"/>
+              <rect x="20" y="30" width="20" height="4" rx="2" fill="rgba(0,229,160,0.4)"/>
+              <rect x="20" y="38" width="35" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
+              <rect x="20" y="46" width="28" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
+              <circle cx="57" cy="34" r="8" fill="rgba(0,229,160,0.2)" stroke="rgba(0,229,160,0.5)" stroke-width="1.5"/>
+              <path d="M53 34l3 3 6-6" stroke="rgba(0,229,160,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="project-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-cat">Plataforma SaaS</div>
+          <div class="project-name">Sistema de Gestão Financeira</div>
+          <p class="project-desc">Dashboard completo com análises em tempo real, conciliação bancária automática e relatórios personalizados para PMEs.</p>
+          <!-- <div class="project-result">↑ 340% produtividade financeira</div> -->
+        </div>
       </a>
-      <a href="#" class="contact-opt">
-        <span class="contact-opt-icon">📍</span> Salvador, BA
+      <a href="#contato" class="project-card">
+        <div class="project-thumb">
+          <div class="project-visual pv-2">
+            <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
+              <rect x="15" y="8" width="40" height="54" rx="6" stroke="rgba(123,92,246,0.5)" stroke-width="1.5" fill="rgba(123,92,246,0.07)"/>
+              <rect x="25" y="18" width="20" height="2" rx="1" fill="rgba(123,92,246,0.5)"/>
+              <rect x="20" y="25" width="30" height="12" rx="3" fill="rgba(123,92,246,0.15)" stroke="rgba(123,92,246,0.3)" stroke-width="1"/>
+              <rect x="20" y="42" width="13" height="10" rx="2" fill="rgba(123,92,246,0.2)"/>
+              <rect x="37" y="42" width="13" height="10" rx="2" fill="rgba(123,92,246,0.15)"/>
+            </svg>
+          </div>
+          <div class="project-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-cat">App Mobile</div>
+          <div class="project-name">App de Delivery Premium</div>
+          <p class="project-desc">Plataforma de entrega com rastreamento em tempo real, pagamento integrado e painel de gestão para restaurantes.</p>
+          <!-- <div class="project-result">↑ 2.1M pedidos processados</div> -->
+        </div>
       </a>
-      <a href="#" class="contact-opt">
-        <span class="contact-opt-icon">🌐</span> mathony@gmail.com
+      <a href="https://advalencaramorim.vercel.app/" target="_blank" class="project-card">
+        <div class="project-thumb">
+          <div class="project-visual pv-3">
+            <!-- <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
+              <circle cx="35" cy="35" r="22" stroke="rgba(20,200,100,0.4)" stroke-width="1.5" fill="rgba(20,200,100,0.05)"/>
+              <circle cx="35" cy="35" r="14" stroke="rgba(20,200,100,0.3)" stroke-width="1" fill="rgba(20,200,100,0.05)"/>
+              <line x1="35" y1="13" x2="35" y2="57" stroke="rgba(20,200,100,0.3)" stroke-width="1"/>
+              <line x1="13" y1="35" x2="57" y2="35" stroke="rgba(20,200,100,0.3)" stroke-width="1"/>
+              <path d="M20 25 Q35 15 50 25 Q35 35 20 25Z" fill="rgba(20,200,100,0.15)"/>
+            </svg> -->
+            <img src="/src/images/alencaramorim.png" alt="Alencar Amorim Website">
+          </div>
+          <div class="project-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-cat">Website</div>
+          <div class="project-name">Alencar Amorim Advocacia</div>
+          <p class="project-desc">Plataforma de contato e referência de um escritório de advocacia, com publicação de artigos.</p>
+          <!-- <div class="project-result">R$ 12M+ em transações</div> -->
+        </div>
       </a>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <a href="#" class="logo">mathony</a>
-  <span class="footer-copy">© 2025 Mathony. Todos os direitos reservados.</span>
-  <ul class="footer-links">
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#portfolio">Portfólio</a></li>
-    <li><a href="#contato">Contato</a></li>
-  </ul>
-</footer>
+  <!-- PROCESS -->
+  <section id="processo">
+    <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto">
+      <div class="section-label">Como trabalhamos</div>
+      <h2>Um processo <em>transparente</em><br>do início ao fim</h2>
+      <p class="section-sub" style="max-width:none">Nada de caixas pretas. Você acompanha cada etapa e tem visibilidade total do projeto.</p>
+    </div>
+    <div class="process-steps stagger">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Descoberta</div>
+        <p class="step-desc">Entendemos seu negócio, objetivos e público. Mapeamos oportunidades e definimos escopo.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Estratégia</div>
+        <p class="step-desc">Arquitetura técnica, stack tecnológico e roadmap de entrega com milestones claros.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Construção</div>
+        <p class="step-desc">Ciclos de 2 semanas com entregas incrementais. Você vê o produto crescendo em tempo real.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Lançamento</div>
+        <p class="step-desc">Deploy seguro, monitoramento, treinamento e suporte pós-lançamento incluídos.</p>
+      </div>
+    </div>
+  </section>
 
-<script>
-  // Intersection Observer for animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        if (entry.target.classList.contains('stagger')) {
-          const children = entry.target.children;
-          Array.from(children).forEach((child, i) => {
-            setTimeout(() => child.classList.add('visible'), i * 120);
-          });
-        } else {
-          entry.target.classList.add('visible');
-        }
-      }
-    });
-  }, { threshold: 0.1 });
+  <!-- TEAM -->
+  <!-- <section id="time">
+    <div class="fade-up">
+      <div class="section-label">O time</div>
+      <h2>Quatro especialistas,<br><em>um objetivo</em></h2>
+      <p class="section-sub">Sem juniores, sem terceirizados. Você fala diretamente com quem vai desenvolver seu produto.</p>
+    </div>
+    <div class="team-grid stagger">
+      <div class="team-card">
+        <div class="avatar av-0">MA</div>
+        <div class="member-name">Matheus Souza</div>
+        <div class="member-role">Tech Lead & Full-Stack</div>
+        <p class="member-bio">8 anos desenvolvendo produtos digitais. Especialista em arquitetura escalável e performance. Já liderou times em startups Series B.</p>
+        <div class="member-skills">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">TypeScript</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar av-1">MN</div>
+        <div class="member-name">Matheus Nascimento</div>
+        <div class="member-role">Tech Lead & Full-Stack</div>
+        <p class="member-bio">8 anos desenvolvendo produtos digitais. Especialista em arquitetura escalável e performance. Já liderou times em startups Series B.</p>
+        <div class="member-skills">
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">TypeScript</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar av-2">TP</div>
+        <div class="member-name">Thiago Pereira</div>
+        <div class="member-role">UX Designer & Frontend</div>
+        <p class="member-bio">Combina beleza e funcionalidade com maestria. Criou interfaces para mais de 30 produtos com taxas de conversão acima da média do mercado.</p>
+        <div class="member-skills">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Next.js</span>
+          <span class="skill-tag">CSS avançado</span>
+          <span class="skill-tag">A/B Tests</span>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="avatar av-3">AV</div>
+        <div class="member-name">Anthony Victor</div>
+        <div class="member-role">Backend & Infraestrutura</div>
+        <p class="member-bio">Mestre em sistemas distribuídos e APIs de alta performance. Garantiu 99.9% de uptime em sistemas com milhões de usuários.</p>
+        <div class="member-skills">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Kubernetes</span>
+        </div>
+      </div>
+    </div>
+  </section> -->
 
-  document.querySelectorAll('.fade-up, .stagger').forEach(el => observer.observe(el));
+  <!-- TESTIMONIALS -->
+  <!-- <section id="depoimentos">
+    <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto">
+      <div class="section-label">O que dizem de nós</div>
+      <h2>Clientes que<br><em>recomendam</em></h2>
+    </div>
+    <div class="testimonials-grid stagger">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Entregaram o MVP em 6 semanas, algo que nossa equipe interna tentava há meses. Código limpo, documentado e escalável. Hoje somos clientes fiéis."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">LF</div>
+          <div>
+            <div class="author-name">Lucas Ferreira</div>
+            <div class="author-company">CEO, Fintech MaisPago</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Thiago redesenhou nosso app e aumentamos o engajamento em 70% no primeiro mês. Ele entende o usuário de uma forma que poucos designers conseguem."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AB</div>
+          <div>
+            <div class="author-name">Ana Beatriz Lima</div>
+            <div class="author-company">CPO, Plataforma EdTech Aprendia</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Migramos nossa infra para AWS com zero downtime. Matheus foi cirúrgico na execução. Reduzimos custo de infra em 45% e ganhamos muito mais estabilidade."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">PC</div>
+          <div>
+            <div class="author-name">Pedro Costa</div>
+            <div class="author-company">CTO, Logística TruckGo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
 
-  // Hero stats counter animation
-  function animateCounter(el, target, duration = 1500) {
-    let start = 0;
-    const step = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { start = target; clearInterval(timer); }
-      el.textContent = Math.floor(start);
-    }, 16);
-  }
+  <!-- CTA -->
+  <section id="contato">
+    <div class="cta-box fade-up">
+      <div class="cta-orb"></div>
+      <div class="section-label" style="justify-content:center">Vamos conversar</div>
+      <h2>Pronto para <em>decolar</em>?</h2>
+      <p class="cta-sub">Conte sobre seu projeto e vamos mostrar como podemos transformar sua ideia em realidade. Resposta em até 24 horas.</p>
+      <div class="cta-actions">
+        <a href="mailto:mathonylabs@gmail.com" class="btn-primary" style="font-size:1rem; padding:1rem 2.5rem">
+          Enviar proposta
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="https://wa.me/5571999999999" target="_blank" class="btn-secondary" style="font-size:1rem; padding:1rem 2.5rem">💬 WhatsApp</a>
+      </div>
+      <div class="contact-options">
+        <a href="mailto:mathonylabs@gmail.com" class="contact-opt">
+          <span class="contact-opt-icon">✉️</span> mathonylabs@gmail.com
+        </a>
+        <a href="#" class="contact-opt">
+          <span class="contact-opt-icon">📍</span> Salvador, BA
+        </a>
+        <a href="https://www.linkedin.com/company/mathonylabs" target="_blank" class="contact-opt">
+          <span class="contact-opt-icon">🌐</span> <mathony class="com br">mathony</mathony>
+        </a>
+      </div>
+    </div>
+  </section>
 
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.stat-num span').forEach(el => {
-          animateCounter(el, parseInt(el.textContent));
-        });
-        statsObserver.disconnect();
-      }
-    });
-  }, { threshold: 0.5 });
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="logo">mathony</a>
+    <span class="footer-copy">© 2026 Mathony. Todos os direitos reservados.</span>
+    <ul class="footer-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </footer>
 
-  const heroStats = document.querySelector('.hero-stats');
-  if (heroStats) statsObserver.observe(heroStats);
-
-  // Nav active state
-  window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 50) {
-      nav.style.borderBottomColor = 'rgba(255,255,255,0.1)';
-    } else {
-      nav.style.borderBottomColor = 'rgba(255,255,255,0.07)';
-    }
-  });
-
-  // Smooth active link highlight
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav ul a:not(.nav-cta)');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
-    });
-  });
-</script>
-</body>
+  <script type="text/javascript" src="src/app.js"></script>
+  </body>
 </html>
