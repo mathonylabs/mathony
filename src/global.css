@@ -66,6 +66,10 @@ display: flex;
 gap: 2.5rem;
 }
 
+.logo.mobile{
+display: none;
+}
+
 nav ul a {
 color: var(--muted);
 text-decoration: none;
@@ -891,6 +895,12 @@ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 .process-steps { grid-template-columns: 1fr 1fr; }
 .testimonials-grid { grid-template-columns: 1fr; }
 nav ul { display: none; }
+.logo.mobile{
+display: inline;
+}
+.logo.desktop{
+display: none;
+}
 .hero-stats { gap: 2rem; flex-wrap: wrap; }
 .cta-box { padding: 3rem 2rem; }
 }
