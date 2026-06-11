@@ -602,7 +602,7 @@ line-height: 1.65;
 
 .team-grid {
 display: grid;
-grid-template-columns: repeat(4, 1fr);
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 gap: 1.5rem;
 margin-top: 4rem;
 }
@@ -614,6 +614,8 @@ border-radius: 16px;
 padding: 2.5rem;
 text-align: center;
 transition: border-color 0.3s, transform 0.3s;
+display: grid;
+grid-template-rows:auto
 }
 
 .team-card:hover {
@@ -670,13 +672,14 @@ gap: 6px;
 justify-content: center;
 }
 
-.skill-tag {
+.skill-tag a {
 font-size: 0.72rem;
 color: var(--muted);
 background: rgba(255,255,255,0.04);
 border: 1px solid var(--border);
 padding: 4px 10px;
 border-radius: 100px;
+text-decoration: none;
 }
 
 /* ── TESTIMONIALS ── */
