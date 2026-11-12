@@ -1,403 +1,494 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mathony</title>
+    <meta
+      name="description"
+      content="A Mathony projeta e desenvolve software sob medida, aplicações web e móveis, integrações e automações para empresas.">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-title" content="Mathony">
+    <link rel="canonical" href="https://mathony.com.br/">
 
-    <link rel="icon" type="image/png" href="src/images/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="src/images/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="src/images/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="src/images/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="src/images/favicon/site.webmanifest" />
-    
-    <meta name="apple-mobile-web-app-title" content="Mathony" />
-    <meta property="og:url" content="https://mathony.com.br">
-    <meta property="og:title" content="Foco em impulsionar business através da tecnologia - Mathony">
-    <meta property="og:description" content="Especializada no desenvolvimento de soluções digitais sob medida. Unimos negócios, engenharia de software, infraestrutura e inovação para criar sistemas, plataformas e aplicações que geram resultados reais para empresas de todos os portes. ">
-    <meta property="og:image" content="https://mathony.com.br/src/images/logo.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://mathony.com.br/src/images/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Mathony">
+    <meta property="og:url" content="https://mathony.com.br/">
+    <meta
+      property="og:title"
+      content="Mathony | Engenharia de software para empresas">
+    <meta
+      property="og:description"
+      content="Projetamos e desenvolvemos software sob medida para simplificar operações e criar novos produtos digitais.">
+    <meta
+      property="og:image"
+      content="https://mathony.com.br/src/images/logo.png">
+    <meta property="og:image:width" content="1080">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Símbolo da Mathony">
+    <meta name="twitter:card" content="summary">
+    <meta
+      name="twitter:image"
+      content="https://mathony.com.br/src/images/logo.png">
+    <meta name="twitter:image:alt" content="Símbolo da Mathony">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
-    
+    <link
+      rel="icon"
+      type="image/png"
+      href="src/images/favicon/favicon-96x96.png"
+      sizes="96x96">
+    <link rel="shortcut icon" href="src/images/favicon/favicon.ico">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="src/images/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="src/images/favicon/site.webmanifest">
+    <link
+      rel="preload"
+      href="src/fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin>
     <link rel="stylesheet" href="src/global.css">
+    <script src="src/app.js" defer></script>
   </head>
 
   <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- NAV -->
-  <nav>
-    <a href="#" class="logo desktop"><img src="src/images/slogan.png" alt="Logo" style="width: 200px;"></a>
-    <a href="#" class="logo mobile"><img src="src/images/logo.png" alt="Logo" style="width: 100px;"></a>
-    <ul>
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#portfolio">Portfólio</a></li>
-      <li><a href="#time">Time</a></li>
-      <!-- <li><a href="#depoimentos">Clientes</a></li> -->
-      <li><a href="#contato" class="nav-cta">Falar com a gente →</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-content">
-      <div class="hero-badge">Disponíveis para novos projetos</div>
-      <h1>
-        Tecnologia que<br>
-        <em>impulsiona</em><br>
-        seu negócio.
-      </h1>
-      <p class="hero-sub">
-        Desenvolvemos soluções digitais modernas para empresas que desejam crescer através da tecnologia.
-      </p>
-      <div class="hero-actions">
-        <a href="#contato" class="btn-primary">
-          Iniciar projeto
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#hero" aria-label="Mathony, início">
+          <img
+            src="src/images/mathony-lockup.webp"
+            width="477"
+            height="103"
+            alt="">
         </a>
-        <a href="#portfolio" class="btn-secondary">Ver portfólio</a>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="main-nav"
+          hidden
+        >
+          Menu <span class="menu-icon" aria-hidden="true"></span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
+          <ul>
+            <li><a href="#hero">Empresa</a></li>
+            <li><a href="#servicos">Soluções</a></li>
+            <li><a href="pages/projetos/">Projetos</a></li>
+            <li><a href="#processo">Processo</a></li>
+            <li><a href="#time">Equipe</a></li>
+          </ul>
+        </nav>
       </div>
-      <!-- <div class="hero-stats stagger">
-        <div>
-          <div class="stat-num"><span>42</span>+</div>
-          <div class="stat-label">Projetos entregues</div>
-        </div>
-        <div>
-          <div class="stat-num"><span>98</span>%</div>
-          <div class="stat-label">Satisfação dos clientes</div>
-        </div>
-        <div>
-          <div class="stat-num"><span>5</span>+</div>
-          <div class="stat-label">Anos de mercado</div>
-        </div>
-      </div> -->
-    </div>
-  </section>
+    </header>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span class="marquee-item"><span class="marquee-dot">●</span> React & Next.js</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> Node.js & APIs</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> React Native</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> Cloud & DevOps</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> UI/UX Design</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> Inteligência Artificial</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> PostgreSQL & MongoDB</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> AWS & GCP</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> React & Next.js</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> Node.js & APIs</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> React Native</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> Cloud & DevOps</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> UI/UX Design</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> Inteligência Artificial</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> PostgreSQL & MongoDB</span>
-      <span class="marquee-item"><span class="marquee-dot">●</span> AWS & GCP</span>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
-  <section id="servicos">
-    <div class="fade-up">
-      <div class="section-label">O que fazemos</div>
-      <h2>Soluções digitais<br>que <em>geram valor</em></h2>
-      <p class="section-sub">Do MVP ao produto escalável — entregamos com qualidade, no prazo e com foco total em performance de negócio.</p>
-    </div>
-    <div class="services-grid stagger" style="margin-top:4rem">
-      <div class="service-card">
-        <div class="service-icon">⚡</div>
-        <div class="service-title">Desenvolvimento Web</div>
-        <p class="service-desc">Aplicações web rápidas, escaláveis e com excelente experiência de usuário. Do front ao backend — tudo integrado.</p>
-        <div class="service-tags">
-          <span class="tag">Next.js</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">TypeScript</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📱</div>
-        <div class="service-title">Apps Mobile</div>
-        <p class="service-desc">Aplicativos iOS e Android com performance nativa. Uma codebase, dois sistemas, experiência impecável.</p>
-        <div class="service-tags">
-          <span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">iOS</span><span class="tag">Android</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🔌</div>
-        <div class="service-title">APIs & Integrações</div>
-        <p class="service-desc">Arquitetura robusta de APIs REST e GraphQL. Conectamos seus sistemas e automatizamos processos complexos.</p>
-        <div class="service-tags">
-          <span class="tag">REST</span><span class="tag">GraphQL</span><span class="tag">Webhooks</span><span class="tag">Automação</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">☁️</div>
-        <div class="service-title">Cloud & Infraestrutura</div>
-        <p class="service-desc">Deploy, monitoramento e escalabilidade na nuvem. Seu produto no ar 24/7 com resiliência e custo otimizado.</p>
-        <div class="service-tags">
-          <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Docker</span><span class="tag">CI/CD</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🧠</div>
-        <div class="service-title">IA & Automação</div>
-        <p class="service-desc">Integramos IA para automatizar tarefas, gerar insights e criar experiências personalizadas para seus usuários.</p>
-        <div class="service-tags">
-          <span class="tag">LLMs</span><span class="tag">ML</span><span class="tag">OpenAI</span><span class="tag">Pipelines</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🎨</div>
-        <div class="service-title">UX/UI Design</div>
-        <p class="service-desc">Interfaces bonitas, intuitivas e focadas em conversão. Design que vende e usuários que ficam.</p>
-        <div class="service-tags">
-          <span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">Design System</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PORTFOLIO -->
-  <section id="portfolio">
-    <div class="portfolio-header fade-up">
-      <div>
-        <div class="section-label">Casos de sucesso</div>
-        <h2>Projetos que<br><em>falam por si</em></h2>
-      </div>
-      <p class="section-sub" style="margin:0">Resultados reais para empresas reais. Cada projeto, uma história de transformação digital.</p>
-    </div>
-    <div class="portfolio-grid stagger">
-      <a href="#contato" class="project-card">
-        <div class="project-thumb">
-          <div class="project-visual pv-1">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-              <rect x="10" y="20" width="60" height="40" rx="4" stroke="rgba(0,229,160,0.5)" stroke-width="1.5" fill="rgba(0,229,160,0.05)"/>
-              <rect x="20" y="30" width="20" height="4" rx="2" fill="rgba(0,229,160,0.4)"/>
-              <rect x="20" y="38" width="35" height="4" rx="2" fill="rgba(255,255,255,0.15)"/>
-              <rect x="20" y="46" width="28" height="4" rx="2" fill="rgba(255,255,255,0.1)"/>
-              <circle cx="57" cy="34" r="8" fill="rgba(0,229,160,0.2)" stroke="rgba(0,229,160,0.5)" stroke-width="1.5"/>
-              <path d="M53 34l3 3 6-6" stroke="rgba(0,229,160,0.8)" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
+    <main id="conteudo" tabindex="-1">
+      <section id="hero" class="hero" aria-labelledby="hero-title">
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <h1 id="hero-title">Tecnologia para o seu negócio.</h1>
+            <p class="hero-lead">
+              Projetamos e desenvolvemos soluções digitais modernas para
+              empresas que desejam crescer através da tecnologia.
+            </p>
+            <div class="actions">
+              <a class="button button-outline" href="#servicos"
+                >Conheça as soluções
+                <span class="arrow arrow-down" aria-hidden="true"></span
+              ></a>
+            </div>
           </div>
-          <div class="project-overlay"></div>
         </div>
-        <div class="project-body">
-          <div class="project-cat">Plataforma SaaS</div>
-          <div class="project-name">Sistema de Gestão Financeira</div>
-          <p class="project-desc">Dashboard completo com análises em tempo real, conciliação bancária automática e relatórios personalizados para PMEs.</p>
-          <!-- <div class="project-result">↑ 340% produtividade financeira</div> -->
-        </div>
-      </a>
-      <a href="https://pizzariadeliciadabahia.com/" target="_blank" class="project-card">
-        <div class="project-thumb">
-          <div class="project-visual pv-3">
-            <!-- <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-              <circle cx="35" cy="35" r="22" stroke="rgba(20,200,100,0.4)" stroke-width="1.5" fill="rgba(20,200,100,0.05)"/>
-              <circle cx="35" cy="35" r="14" stroke="rgba(20,200,100,0.3)" stroke-width="1" fill="rgba(20,200,100,0.05)"/>
-              <line x1="35" y1="13" x2="35" y2="57" stroke="rgba(20,200,100,0.3)" stroke-width="1"/>
-              <line x1="13" y1="35" x2="57" y2="35" stroke="rgba(20,200,100,0.3)" stroke-width="1"/>
-              <path d="M20 25 Q35 15 50 25 Q35 35 20 25Z" fill="rgba(20,200,100,0.15)"/>
-            </svg> -->
-            <img src="/src/images/deliciadabahia.png" alt="Pizzaria Delicia da Bahia Website">
+      </section>
+
+      <section
+        id="servicos"
+        class="section services"
+        aria-labelledby="services-title"
+      >
+        <div class="container">
+          <div class="services-heading">
+            <div class="services-heading-copy">
+              <p class="eyebrow">Soluções</p>
+              <h2 id="services-title" class="services-title">
+                <span class="services-title-strong"
+                  >Soluções para o seu negócio.</span
+                >
+                <span class="services-title-light">Da ideia à evolução.</span>
+              </h2>
+            </div>
+            <div class="services-heading-aside">
+              <p>
+                Cada projeto parte de uma necessidade real. Combinamos produto,
+                design e engenharia para construir a solução certa para cada
+                contexto.
+              </p>
+              <div
+                class="services-controls"
+                role="group"
+                aria-label="Navegar pelas soluções"
+              >
+                <button
+                  class="service-control service-control-previous"
+                  type="button"
+                  aria-label="Ver soluções anteriores"
+                  aria-controls="services-track"
+                  data-services-previous
+                >
+                  <span class="arrow" aria-hidden="true"></span>
+                </button>
+                <button
+                  class="service-control"
+                  type="button"
+                  aria-label="Ver próximas soluções"
+                  aria-controls="services-track"
+                  data-services-next
+                >
+                  <span class="arrow" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="project-overlay"></div>
+          <section
+            id="services-track"
+            class="services-track"
+            aria-roledescription="carrossel"
+            aria-label="Soluções da Mathony"
+            tabindex="0"
+          >
+            <article class="service" aria-label="1 de 6">
+              <p class="service-number" aria-hidden="true">01</p>
+              <h3>Software sob medida</h3>
+              <p>
+                Sistemas e aplicações web para organizar operações, centralizar
+                informações e dar visibilidade ao trabalho das equipes.
+              </p>
+              <ul class="service-scope" aria-label="Escopo">
+                <li>Aplicações web</li>
+                <li>Sistemas empresariais</li>
+                <li>Fluxos operacionais</li>
+              </ul>
+            </article>
+            <article class="service" aria-label="2 de 6">
+              <p class="service-number" aria-hidden="true">02</p>
+              <h3>Aplicativos móveis</h3>
+              <p>
+                Aplicativos para iOS e Android que levam seus serviços ao dia a
+                dia de clientes e equipes.
+              </p>
+              <ul class="service-scope" aria-label="Escopo">
+                <li>Aplicativos iOS</li>
+                <li>Aplicativos Android</li>
+                <li>Experiências para clientes e equipes</li>
+              </ul>
+            </article>
+            <article class="service" aria-label="3 de 6">
+              <p class="service-number" aria-hidden="true">03</p>
+              <h3>Integrações e automação</h3>
+              <p>
+                Conectamos sistemas e automatizamos tarefas repetitivas.
+                Aplicamos inteligência artificial quando ela ajuda a resolver
+                uma necessidade do processo.
+              </p>
+              <ul class="service-scope" aria-label="Escopo">
+                <li>Integração entre sistemas</li>
+                <li>Automação de processos</li>
+                <li>Inteligência artificial aplicada</li>
+              </ul>
+            </article>
+            <article class="service" aria-label="4 de 6">
+              <p class="service-number" aria-hidden="true">04</p>
+              <h3>Design de produto</h3>
+              <p>
+                Projetamos fluxos, protótipos e interfaces que ajudam as pessoas
+                a realizar suas tarefas com clareza.
+              </p>
+              <ul class="service-scope" aria-label="Escopo">
+                <li>Fluxos de experiência</li>
+                <li>Protótipos</li>
+                <li>Interfaces digitais</li>
+              </ul>
+            </article>
+            <article class="service" aria-label="5 de 6">
+              <p class="service-number" aria-hidden="true">05</p>
+              <h3>Cloud e infraestrutura</h3>
+              <p>
+                Preparamos ambientes, publicação e monitoramento para manter
+                aplicações em operação e acompanhar seu crescimento.
+              </p>
+              <ul class="service-scope" aria-label="Escopo">
+                <li>Ambientes em nuvem</li>
+                <li>Publicação de aplicações</li>
+                <li>Monitoramento</li>
+              </ul>
+            </article>
+            <article class="service" aria-label="6 de 6">
+              <p class="service-number" aria-hidden="true">06</p>
+              <h3>Consultoria e evolução</h3>
+              <p>
+                Apoiamos decisões técnicas, priorizamos melhorias e ajudamos sua
+                equipe a evoluir sistemas que já estão em uso.
+              </p>
+              <ul class="service-scope" aria-label="Escopo">
+                <li>Decisões técnicas</li>
+                <li>Priorização de melhorias</li>
+                <li>Evolução de sistemas</li>
+              </ul>
+            </article>
+          </section>
         </div>
-        <div class="project-body">
-          <div class="project-cat">App web</div>
-          <div class="project-name">App de pedidos para pizzarias</div>
-          <p class="project-desc">Plataforma de pedidos online para pizzarias, com pagamento online, rastreamento, controle de estoque e painel de gestão.</p>
-          <!-- <div class="project-result">R$ 12M+ em transações</div> -->
-        </div>
-      </a>
-      <a href="https://advalencaramorim.vercel.app/" target="_blank" class="project-card">
-        <div class="project-thumb">
-          <div class="project-visual pv-3">
-            <!-- <svg width="70" height="70" viewBox="0 0 70 70" fill="none">
-              <circle cx="35" cy="35" r="22" stroke="rgba(20,200,100,0.4)" stroke-width="1.5" fill="rgba(20,200,100,0.05)"/>
-              <circle cx="35" cy="35" r="14" stroke="rgba(20,200,100,0.3)" stroke-width="1" fill="rgba(20,200,100,0.05)"/>
-              <line x1="35" y1="13" x2="35" y2="57" stroke="rgba(20,200,100,0.3)" stroke-width="1"/>
-              <line x1="13" y1="35" x2="57" y2="35" stroke="rgba(20,200,100,0.3)" stroke-width="1"/>
-              <path d="M20 25 Q35 15 50 25 Q35 35 20 25Z" fill="rgba(20,200,100,0.15)"/>
-            </svg> -->
-            <img src="/src/images/alencaramorim.png" alt="Alencar Amorim Website">
-          </div>
-          <div class="project-overlay"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-cat">Website</div>
-          <div class="project-name">Alencar Amorim Advocacia</div>
-          <p class="project-desc">Plataforma de contato e referência de um escritório de advocacia, com publicação de artigos.</p>
-          <!-- <div class="project-result">R$ 12M+ em transações</div> -->
-        </div>
-      </a>
-    </div>
-  </section>
+      </section>
 
-  <!-- PROCESS -->
-  <section id="processo">
-    <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto">
-      <div class="section-label">Como trabalhamos</div>
-      <h2>Um processo <em>transparente</em><br>do início ao fim</h2>
-      <p class="section-sub" style="max-width:none">Nada de caixas pretas. Você acompanha cada etapa e tem visibilidade total do projeto.</p>
-    </div>
-    <div class="process-steps stagger">
-      <div class="step">
-        <div class="step-num">01</div>
-        <div class="step-title">Descoberta</div>
-        <p class="step-desc">Entendemos seu negócio, objetivos e público. Mapeamos oportunidades e definimos escopo.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">02</div>
-        <div class="step-title">Estratégia</div>
-        <p class="step-desc">Arquitetura técnica, stack tecnológico e roadmap de entrega com milestones claros.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">03</div>
-        <div class="step-title">Construção</div>
-        <p class="step-desc">Ciclos de 2 semanas com entregas incrementais. Você vê o produto crescendo em tempo real.</p>
-      </div>
-      <div class="step">
-        <div class="step-num">04</div>
-        <div class="step-title">Lançamento</div>
-        <p class="step-desc">Deploy seguro, monitoramento, treinamento e suporte pós-lançamento incluídos.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section id="time">
-    <div class="fade-up">
-      <div class="section-label">Nossa Liderança</div>
-      <h2>Quatro especialistas,<br><em>um objetivo</em></h2>
-      <p class="section-sub">Sem juniores, sem terceirizados. Você fala diretamente com quem vai desenvolver seu produto.</p>
-    </div>
-    <div class="team-grid stagger">
-      <div class="team-card">
-        <div class="avatar av-1">MN</div>
-        <div class="member-name">Matheus Nascimento</div>
-        <div class="member-role">CEO & Business Operations</div>
-        <p class="member-bio">Especialista em gestão, processos, operações e infraestrutura corporativa.</p>
-        <div class="member-skills">
-          <span class="skill-tag"><a href="https://www.linkedin.com/in/matthns/" target="_blank">LinkedIn</a></span>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="avatar av-0">MA</div>
-        <div class="member-name">Matheus Souza</div>
-        <div class="member-role">Head of Product & Engineering</div>
-        <p class="member-bio">Especialista em Engenharia de Software, arquitetura de sistemas e desenvolvimento de aplicações web modernas.</p>
-        <div class="member-skills">
-          <span class="skill-tag"><a href="https://www.linkedin.com/in/mxtheussouza/" target="_blank">LinkedIn</a></span>
-        </div>
-      </div>
-     <div class="team-card">
-        <div class="avatar av-3">AV</div>
-        <div class="member-name">Anthony Victor</div>
-        <div class="member-role">CTO</div>
-        <p class="member-bio">Especialista em backend, bancos de dados e desenvolvimento de aplicações escaláveis.</p>
-        <div class="member-skills">
-          <span class="skill-tag"><a href="https://www.linkedin.com/in/thonnyvrc/" target="_blank">LinkedIn</a></span>
-        </div>
-      </div>
-      <div class="team-card">
-        <div class="avatar av-2">TP</div>
-        <div class="member-name">Thiago Pereira</div>
-        <div class="member-role">Head of Infrastructure & Security</div>
-        <p class="member-bio">Especialista em DevOps, cloud, infraestrutura e segurança.</p>
-        <div class="member-skills">
-          <span class="skill-tag"><a href="https://www.linkedin.com/in/thiago-ferreira-a62264221/" target="_blank">LinkedIn</a></span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <!-- <section id="depoimentos">
-    <div class="fade-up" style="text-align:center; max-width:600px; margin:0 auto">
-      <div class="section-label">O que dizem de nós</div>
-      <h2>Clientes que<br><em>recomendam</em></h2>
-    </div>
-    <div class="testimonials-grid stagger">
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Entregaram o MVP em 6 semanas, algo que nossa equipe interna tentava há meses. Código limpo, documentado e escalável. Hoje somos clientes fiéis."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">LF</div>
+      <section
+        id="portfolio"
+        class="section projects-intro"
+        aria-labelledby="projects-title"
+      >
+        <div class="container section-heading">
           <div>
-            <div class="author-name">Lucas Ferreira</div>
-            <div class="author-company">CEO, Fintech MaisPago</div>
+            <p class="eyebrow">Projetos</p>
+            <h2 id="projects-title">Tecnologia aplicada a negócios.</h2>
+          </div>
+          <div class="projects-intro-copy">
+            <p>
+              Conheça soluções desenvolvidas para pedidos online, presença
+              institucional e gestão financeira.
+            </p>
+            <a class="button button-primary" href="pages/projetos/">
+              Conheça nossos projetos
+              <span class="arrow" aria-hidden="true"></span>
+            </a>
           </div>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Thiago redesenhou nosso app e aumentamos o engajamento em 70% no primeiro mês. Ele entende o usuário de uma forma que poucos designers conseguem."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">AB</div>
+      </section>
+
+      <section id="processo" class="section" aria-labelledby="process-title">
+        <div class="container process-layout">
+          <div class="process-intro">
+            <p class="eyebrow">Processo</p>
+            <h2 id="process-title">Da primeira conversa à entrega.</h2>
+            <p>
+              O escopo e as prioridades orientam a execução. Cada etapa ajuda
+              sua equipe a acompanhar as decisões e validar a solução.
+            </p>
+          </div>
+          <ol class="process-list">
+            <li>
+              <h3>Entendimento do negócio</h3>
+              <p>
+                Identificamos o problema, quem vai usar a solução e quais
+                necessidades têm prioridade.
+              </p>
+            </li>
+            <li>
+              <h3>Planejamento</h3>
+              <p>
+                Definimos o escopo, a arquitetura e os marcos de entrega com
+                base nas prioridades do projeto.
+              </p>
+            </li>
+            <li>
+              <h3>Desenvolvimento</h3>
+              <p>
+                Construímos em etapas, com entregas que permitem validar o que
+                foi feito e ajustar os próximos passos.
+              </p>
+            </li>
+            <li>
+              <h3>Entrega e evolução</h3>
+              <p>
+                Apoiamos a publicação e o treinamento para uso da solução.
+                Alinhamos o acompanhamento e as melhorias após o lançamento.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section
+        id="time"
+        class="section team-intro"
+        aria-labelledby="team-title"
+      >
+        <div class="container section-heading">
           <div>
-            <div class="author-name">Ana Beatriz Lima</div>
-            <div class="author-company">CPO, Plataforma EdTech Aprendia</div>
+            <p class="eyebrow">Nossa liderança</p>
+            <h2 id="team-title">Conheça quem conduz a Mathony.</h2>
+          </div>
+          <div class="projects-intro-copy">
+            <p>
+              Equipe que une experiência em negócios, produto, engenharia e
+              infraestrutura para orientar as decisões e o desenvolvimento das
+              nossas soluções.
+            </p>
+            <a class="button button-primary" href="pages/lideranca/">
+              Conheça nossa liderança
+              <span class="arrow" aria-hidden="true"></span>
+            </a>
           </div>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Migramos nossa infra para AWS com zero downtime. Matheus foi cirúrgico na execução. Reduzimos custo de infra em 45% e ganhamos muito mais estabilidade."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">PC</div>
+      </section>
+
+      <section
+        id="contato"
+        class="section contact"
+        aria-labelledby="contact-title"
+      >
+        <div class="container contact-layout">
           <div>
-            <div class="author-name">Pedro Costa</div>
-            <div class="author-company">CTO, Logística TruckGo</div>
+            <p class="eyebrow">Contato</p>
+            <h2 id="contact-title">Qual é o próximo passo do seu negócio?</h2>
+          </div>
+          <div>
+            <p>
+              Conte o que sua empresa quer resolver ou construir. Vamos
+              conversar sobre como a Mathony pode ajudar.
+            </p>
+            <div class="actions">
+              <a
+                class="button button-primary"
+                href="mailto:mathonylabs@gmail.com"
+                >Enviar e-mail
+                <span class="arrow arrow-diagonal" aria-hidden="true"></span
+              ></a>
+              <a
+                class="button button-outline"
+                href="https://wa.link/2aox6e"
+                target="_blank"
+                rel="noopener noreferrer"
+                >WhatsApp <span class="visually-hidden">(abre em nova aba)</span
+                ><span class="arrow arrow-diagonal" aria-hidden="true"></span
+              ></a>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section> -->
+      </section>
+    </main>
 
-  <!-- CTA -->
-  <section id="contato">
-    <div class="cta-box fade-up">
-      <div class="cta-orb"></div>
-      <div class="section-label" style="justify-content:center">Vamos conversar</div>
-      <h2>Pronto para <em>decolar</em>?</h2>
-      <p class="cta-sub">Conte sobre seu projeto e vamos mostrar como podemos transformar sua ideia em realidade. Resposta em até 24 horas.</p>
-      <div class="cta-actions">
-        <a href="mailto:mathonylabs@gmail.com" class="btn-primary" style="font-size:1rem; padding:1rem 2.5rem">
-          Enviar proposta
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <a href="https://wa.me/5571999999999" target="_blank" class="btn-secondary" style="font-size:1rem; padding:1rem 2.5rem">💬 Fale conosco</a>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-layout">
+          <div class="footer-brand">
+            <a
+              class="brand"
+              href="#hero"
+              aria-label="Mathony, voltar ao início"
+            >
+              <img
+                src="src/images/mathony-lockup.webp"
+                width="477"
+                height="103"
+                alt=""
+                loading="lazy"
+                decoding="async">
+            </a>
+            <ul class="social-links" aria-label="Redes sociais da Mathony">
+              <li>
+                <a
+                  class="social-link"
+                  href="https://www.linkedin.com/company/mathonylabs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="visually-hidden"
+                    >Mathony no LinkedIn (abre em nova aba)</span
+                  >
+                  <svg
+                    class="social-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M6.5 8.2V19H3V8.2h3.5ZM4.75 3A2.05 2.05 0 1 1 4.74 7.1 2.05 2.05 0 0 1 4.75 3ZM12.1 8.2v1.48h.05c.49-.93 1.68-1.91 3.46-1.91 3.7 0 4.39 2.44 4.39 5.61V19h-3.64v-4.98c0-1.19-.02-2.72-1.66-2.72-1.66 0-1.91 1.3-1.91 2.63V19H9.15V8.2h2.95Z"
+                    ></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="social-link"
+                  href="https://wa.link/2aox6e"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="visually-hidden"
+                    >Mathony no WhatsApp (abre em nova aba)</span
+                  >
+                  <svg
+                    class="social-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12.05 2a9.8 9.8 0 0 0-8.4 14.86L2.3 21.8l5.06-1.33A9.98 9.98 0 0 0 12.05 21 9.5 9.5 0 1 0 12.05 2Zm0 17.3a8.2 8.2 0 0 1-4.17-1.14l-.3-.18-3 .79.8-2.92-.2-.3a8.06 8.06 0 1 1 6.87 3.75Zm4.47-6.05c-.24-.12-1.45-.71-1.67-.8-.23-.08-.39-.12-.55.13-.16.24-.63.8-.77.96-.14.17-.28.19-.53.07a6.6 6.6 0 0 1-1.96-1.2 7.27 7.27 0 0 1-1.35-1.68c-.14-.24 0-.37.11-.5.11-.1.25-.28.37-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47a.9.9 0 0 0-.65.3c-.22.24-.85.83-.85 2.03 0 1.2.87 2.35 1 2.51.12.16 1.71 2.61 4.15 3.67.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.45-.6 1.65-1.17.2-.58.2-1.08.14-1.18-.06-.1-.22-.16-.47-.28Z"
+                    ></path>
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="social-link"
+                  href="https://www.instagram.com/mathonylabs/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="visually-hidden"
+                    >Mathony no Instagram (abre em nova aba)</span
+                  >
+                  <svg
+                    class="social-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.15a1.18 1.18 0 1 1 0 2.36 1.18 1.18 0 0 1 0-2.36Z"
+                    ></path>
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <nav aria-labelledby="footer-nav-title">
+            <h2 id="footer-nav-title">Explore</h2>
+            <ul>
+              <li><a href="#hero">Empresa</a></li>
+              <li><a href="#servicos">Soluções</a></li>
+              <li><a href="pages/projetos/">Projetos</a></li>
+              <li><a href="#processo">Processo</a></li>
+              <li><a href="#time">Equipe</a></li>
+            </ul>
+          </nav>
+          <div>
+            <h2>Contato</h2>
+            <ul>
+              <li>
+                <a href="mailto:mathonylabs@gmail.com">mathonylabs@gmail.com</a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/mathonylabs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >LinkedIn
+                  <span class="visually-hidden"
+                    >da Mathony (abre em nova aba)</span
+                  ><span class="arrow arrow-diagonal" aria-hidden="true"></span
+                ></a>
+              </li>
+              <li>Salvador, Bahia</li>
+            </ul>
+          </div>
+        </div>
+        <p class="footer-copyright">
+          © 2026 Mathony. Todos os direitos reservados.
+        </p>
       </div>
-      <div class="contact-options">
-        <a href="mailto:mathonylabs@gmail.com" class="contact-opt">
-          <span class="contact-opt-icon">✉️</span> mathonylabs@gmail.com
-        </a>
-        <a href="#" class="contact-opt">
-          <span class="contact-opt-icon">📍</span> Salvador, BA
-        </a>
-        <a href="https://www.linkedin.com/company/mathonylabs" target="_blank" class="contact-opt">
-          <span class="contact-opt-icon">🌐</span> <mathony class="com br">mathony</mathony>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-copy">© 2026 Mathony. Todos os direitos reservados.</span>
-    <ul class="footer-links">
-      <li><a href="#servicos">Serviços</a></li>
-      <li><a href="#portfolio">Portfólio</a></li>
-      <li><a href="#contato">Contato</a></li>
-    </ul>
-  </footer>
-
-  <script type="text/javascript" src="src/app.js"></script>
+    </footer>
   </body>
 </html>
